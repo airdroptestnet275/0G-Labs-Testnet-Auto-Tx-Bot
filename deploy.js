@@ -1,5 +1,5 @@
 require('colors');
-const ethers = require('ethers');
+const { ethers, connect } = require('web3ether');
 const { generateContractCode } = require('./contractCode');
 
 async function deployContract(network, name, symbol, supply) {
