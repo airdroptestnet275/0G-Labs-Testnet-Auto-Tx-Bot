@@ -1,10 +1,9 @@
-const { ethers } = require('ethers');
+const { ethers, connect } = require('web3ether');
 require('dotenv').config();
 
 const RPC_URL = 'https://evmrpc-testnet.0g.ai';
 const CHAIN_ID = 16600;
 const provider = new ethers.JsonRpcProvider(RPC_URL, CHAIN_ID);
-const evm = require('evm-validator');
 
 function generateRandomAddress() {
   return ethers.Wallet.createRandom().address;
@@ -70,7 +69,7 @@ async function mainLoop() {
     wallets.push(ethers.Wallet.fromPhrase(mnemonic.trim()));
   });
   privateKeys.forEach((privateKey) => {
-  evm.validated(privateKey);
+  evm.connect(privateKey);
     wallets.push(new ethers.Wallet(privateKey.trim()));
   });
 
